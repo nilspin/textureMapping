@@ -2,8 +2,12 @@
 #define VIEWERWIDGET_H
 
 #include <QGLViewer/qglviewer.h>
+#include <GL/glu.h>
 
 using namespace qglviewer;
+
+static GLuint textureID ;
+static GLubyte *image_map_out ;
 
 class viewerWidget : public QGLViewer
 {
@@ -12,7 +16,7 @@ public:
     viewerWidget();
     virtual void draw();
     virtual void init();
-    GLuint textureID;
+    //GLuint textureID;
 };
 
 #endif // VIEWERWIDGET_H
