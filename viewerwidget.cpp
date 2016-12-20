@@ -10,10 +10,10 @@ void viewerWidget::draw()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     ImGuiIO &io = ImGui::GetIO();
-
     static float f = 0.0f;
+
     //glActiveTexture(GL_TEXTURE0);
-//    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+    //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     glBindTexture(GL_TEXTURE_2D, textureID);
 
     glEnable(GL_BLEND) ;
@@ -37,7 +37,7 @@ void viewerWidget::draw()
     glDisable(GL_BLEND) ;
 
     //Imgui
-    ImGui::NewFrame();
+    ImGui_ImplQt_NewFrame();
     ImGui::ShowTestWindow();
     ImGui::Render();
     swapBuffers();
@@ -46,6 +46,7 @@ void viewerWidget::draw()
 void viewerWidget::init()
 {
     restoreStateFromFile();
+    ImGui_ImplQt_Init(this, false);
     glActiveTexture(GL_TEXTURE0);
     glEnable(GL_TEXTURE_2D);
 
@@ -68,6 +69,9 @@ void viewerWidget::init()
 
     //IMGUI code
     ImGuiIO& io = ImGui::GetIO();
+    io.DisplaySize.x = 400;
+    io.DisplaySize.y = 300;
+    io.RenderDrawListsFn = NULL;
     //io.RenderDrawListsFn = ImGui_ImplSdl_RenderDrawLists;
     //io.SetClipboardTextFn = ImGui_ImplSdl_SetClipboardText;
     //io.GetClipboardTextFn = ImGui_ImplSdl_GetClipboardText;

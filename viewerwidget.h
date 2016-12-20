@@ -4,6 +4,7 @@
 #include <QGLViewer/qglviewer.h>
 #include <GL/glu.h>
 #include <imgui/imgui.h>
+#include <imgui/imgui_impl_qt.h>
 
 using namespace qglviewer;
 
