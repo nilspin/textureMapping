@@ -9,9 +9,11 @@ viewerWidget::viewerWidget()
 void viewerWidget::draw()
 {
     glClear(GL_COLOR_BUFFER_BIT);
+    ImGuiIO &io = ImGui::GetIO();
 
+    static float f = 0.0f;
     //glActiveTexture(GL_TEXTURE0);
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+//    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     glBindTexture(GL_TEXTURE_2D, textureID);
 
     glEnable(GL_BLEND) ;
@@ -29,10 +31,16 @@ void viewerWidget::draw()
     glTexCoord2d(1,0);
     glVertex3f(0.5,-0.5,0);
     glEnd();
-    glPopMatrix() ;
-    glFlush() ;
+//    glPopMatrix() ;
+//    glFlush() ;
     glDisable(GL_TEXTURE_2D) ;
     glDisable(GL_BLEND) ;
+
+    //Imgui
+    ImGui::NewFrame();
+    ImGui::ShowTestWindow();
+    ImGui::Render();
+    swapBuffers();
 }
 
 void viewerWidget::init()
@@ -57,4 +65,34 @@ void viewerWidget::init()
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, glImg.width(), glImg.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image_map_out);
     //glBindTexture(GL_TEXTURE_2D, 0);
+
+    //IMGUI code
+    ImGuiIO& io = ImGui::GetIO();
+    //io.RenderDrawListsFn = ImGui_ImplSdl_RenderDrawLists;
+    //io.SetClipboardTextFn = ImGui_ImplSdl_SetClipboardText;
+    //io.GetClipboardTextFn = ImGui_ImplSdl_GetClipboardText;
+
+    //Charactermap texture
+    unsigned char* pixels;
+    int width, height;
+    io.Fonts->GetTexDataAsAlpha8(&pixels, &width, &height);
+
+    // Upload texture to graphics system
+    GLint last_texture;
+    static GLuint g_FontTexture = 0;
+    glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
+    glGenTextures(1, &g_FontTexture);
+    glBindTexture(GL_TEXTURE_2D, g_FontTexture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, width, height, 0, GL_ALPHA, GL_UNSIGNED_BYTE, pixels);
+
+    // Store our identifier
+    io.Fonts->TexID = (void *)(intptr_t)g_FontTexture;
+
+    // Restore state
+    glBindTexture(GL_TEXTURE_2D, last_texture);
+
+    io.DisplaySize = ImVec2((float)400, (float)300);
 }

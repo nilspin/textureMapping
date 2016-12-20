@@ -3,6 +3,7 @@
 
 #include <QGLViewer/qglviewer.h>
 #include <GL/glu.h>
+#include <imgui/imgui.h>
 
 using namespace qglviewer;
 

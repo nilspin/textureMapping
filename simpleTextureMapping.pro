@@ -16,10 +16,18 @@ LIBS *= -lQGLViewer -lGLU
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    viewerwidget.cpp
+    viewerwidget.cpp \
+    imgui/imgui.cpp \
+    imgui/imgui_draw.cpp \
+    imgui/imgui_demo.cpp
 
 HEADERS  += mainwindow.h \
-    viewerwidget.h
+    viewerwidget.h \
+    imgui/imgui.h \
+    imgui/stb_truetype.h \
+    imgui/stb_textedit.h \
+    imgui/stb_rect_pack.h \
+    imgui/imgui_internal.h
 
 FORMS    += mainwindow.ui
 
