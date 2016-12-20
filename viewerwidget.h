@@ -2,6 +2,7 @@
 #define VIEWERWIDGET_H
 
 #include <QGLViewer/qglviewer.h>
+#include <GL/gl.h>
 #include <GL/glu.h>
 #include <imgui/imgui.h>
 #include <imgui/imgui_impl_qt.h>

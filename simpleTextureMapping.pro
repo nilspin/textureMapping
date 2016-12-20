@@ -33,4 +33,4 @@ HEADERS  += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-QMAKE_CXXFLAGS += -c -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -fPIC -O0 -std=c++11
+QMAKE_CXXFLAGS += -c -Wall -Wno-write-strings -Wno-sign-compare -Wno-unused-result -fPIC -O0 -std=c++11 -fpermissive

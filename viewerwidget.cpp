@@ -12,6 +12,7 @@ void viewerWidget::draw()
     ImGuiIO &io = ImGui::GetIO();
     static float f = 0.0f;
 
+    /*
     //glActiveTexture(GL_TEXTURE0);
     //glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
     glBindTexture(GL_TEXTURE_2D, textureID);
@@ -35,19 +36,22 @@ void viewerWidget::draw()
 //    glFlush() ;
     glDisable(GL_TEXTURE_2D) ;
     glDisable(GL_BLEND) ;
-
+*/
     //Imgui
     ImGui_ImplQt_NewFrame();
-    ImGui::ShowTestWindow();
+    ImGui::Text("Hello, world!");
+    //ImGui::ShowTestWindow();
+    glUseProgram(0);
     ImGui::Render();
-    swapBuffers();
+    //swapBuffers();
 }
 
 void viewerWidget::init()
 {
     restoreStateFromFile();
     ImGui_ImplQt_Init(this, false);
-    glActiveTexture(GL_TEXTURE0);
+
+    /*glActiveTexture(GL_TEXTURE0);
     glEnable(GL_TEXTURE_2D);
 
     glClearColor(0.3,0.3,0.3,1.0);
@@ -66,16 +70,18 @@ void viewerWidget::init()
 
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, glImg.width(), glImg.height(), 0, GL_RGBA, GL_UNSIGNED_BYTE, image_map_out);
     //glBindTexture(GL_TEXTURE_2D, 0);
+    */
 
     //IMGUI code
     ImGuiIO& io = ImGui::GetIO();
-    io.DisplaySize.x = 400;
-    io.DisplaySize.y = 300;
+    io.DisplaySize.x = 1000;
+    io.DisplaySize.y = 800;
     io.RenderDrawListsFn = NULL;
     //io.RenderDrawListsFn = ImGui_ImplSdl_RenderDrawLists;
     //io.SetClipboardTextFn = ImGui_ImplSdl_SetClipboardText;
     //io.GetClipboardTextFn = ImGui_ImplSdl_GetClipboardText;
 
+    /*
     //Charactermap texture
     unsigned char* pixels;
     int width, height;
@@ -97,6 +103,6 @@ void viewerWidget::init()
 
     // Restore state
     glBindTexture(GL_TEXTURE_2D, last_texture);
-
-    io.DisplaySize = ImVec2((float)400, (float)300);
+*/
+    io.DisplaySize = ImVec2((float)1000, (float)800);
 }
