@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     viewerwidget.cpp \
     imgui/imgui.cpp \
     imgui/imgui_draw.cpp \
-    imgui/imgui_demo.cpp
+    imgui/imgui_demo.cpp \
+    imgui/imgui_impl_qt.cpp
 
 HEADERS  += mainwindow.h \
     viewerwidget.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     imgui/stb_truetype.h \
     imgui/stb_textedit.h \
     imgui/stb_rect_pack.h \
-    imgui/imgui_internal.h
+    imgui/imgui_internal.h \
+    imgui/imgui_impl_qt.h
 
 FORMS    += mainwindow.ui
 
